@@ -16,7 +16,7 @@ class Orders():
         order = client.buy_limit(symbol, quantity, buyPrice)
 
         if 'msg' in order:
-            Messages.get(order['msg'])
+            Messages.get('buy_limit'+"|"+str(symbol)+"|"+str(quantity)+"|"+str(buyPrice) +"|"+ order['msg'])
 
         # Buy order created.
         return order['orderId']
@@ -27,7 +27,7 @@ class Orders():
         order = client.sell_limit(symbol, quantity, sell_price)  
 
         if 'msg' in order:
-            Messages.get(order['msg'])
+            Messages.get('sell_limit'+"|"+str(symbol)+"|"+str(quantity)+"|"+str(sell_price)+"|"+order['msg'])
 
         return order
 
@@ -37,7 +37,7 @@ class Orders():
         order = client.buy_market(symbol, quantity)  
 
         if 'msg' in order:
-            Messages.get(order['msg'])
+            Messages.get('buy_market'+"|"+str(symbol)+"|"+str(quantity)+"|"+order['msg'])
 
         return order
 
@@ -47,7 +47,7 @@ class Orders():
         order = client.sell_market(symbol, quantity)  
 
         if 'msg' in order:
-            Messages.get(order['msg'])
+            Messages.get('sell_market'+"|"+str(symbol)+"|"+str(quantity)+"|"+order['msg'])
 
         return order
 
@@ -59,7 +59,7 @@ class Orders():
             order = client.cancel(symbol, orderId)
         
             if 'msg' in order:
-                Messages.get(order['msg'])
+                Messages.get('cancel_order|'+order['msg'])
             
             print ('Profit loss, called order, %s' % (orderId))
         
@@ -90,7 +90,7 @@ class Orders():
             order = client.query_order(symbol, orderId)
 
             if 'msg' in order:
-                Messages.get(order['msg'])
+                Messages.get('get_order|'+order['msg'])
 
             return order
 
@@ -105,7 +105,7 @@ class Orders():
             order = client.query_order(symbol, orderId)
     
             if 'msg' in order:
-                Messages.get(order['msg'])
+                Messages.get('get_order_status|'+order['msg'])
         
             return order['status']
  
